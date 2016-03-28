@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A644F9E1C29681100AB505C"
+               BlueprintIdentifier = "2A736ABA1C5A73470008467B"
                BuildableName = "BiSheTests.xctest"
                BlueprintName = "BiSheTests"
                ReferencedContainer = "container:BiShe.xcodeproj">
@@ -81,6 +81,16 @@
             ReferencedContainer = "container:BiShe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-com.apple.CoreData.SQLDebug"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "1"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

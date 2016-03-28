@@ -2,11 +2,15 @@
 //  BiSheTests.m
 //  BiSheTests
 //
-//  Created by Jz on 15/12/22.
-//  Copyright © 2015年 Jz. All rights reserved.
+//  Created by Jz on 16/1/29.
+//  Copyright © 2016年 Jz. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
+#import "JZWildDog.h"
+#import "AFNetworking.h"
+#import "Wilddog.h"
+
 
 @interface BiSheTests : XCTestCase
 
@@ -25,13 +29,52 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+    XCTestExpectation *expectation =  [self expectationWithDescription:@"High Expectations"];
+    NSString *urlCar = @"http://api.che300.com/service/getCarList?token=60998c88e30c16609dbcbe48f3216df3&zone=%d&page=100";
+    //        NSMutableDictionary *carDic = [NSMutableDictionary dictionary];
+    //    NSMutableArray *carArray = [NSMutableArray array];
+    Wilddog *wildog = [[Wilddog alloc]initWithUrl:@"https://usedcar.wilddogio.com/"];
+
+
+    for (int i=1; i<299; i++) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:urlCar,i]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (data) {
+                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                    NSArray *carList = dic[@"car_list"];
+                    [carList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        [[[wildog childByAppendingPath:[NSString stringWithFormat:@"cars"]] childByAutoId] updateChildValues:obj withCompletionBlock:^(NSError *error, Wilddog *ref) {
+                            if (error) {
+                                NSLog(@"失败%d",i);
+                            }else
+                                NSLog(@"完成第%d个",i);
+                        }];
+                        
+                        
+                    }];
+                }
+                
+                else{
+                    NSLog(@"%d没有数据",i);
+                }
+            });
+        
+
+        });
+
+    }
+    [self waitForExpectationsWithTimeout:6000.0 handler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
+       
         // Put the code you want to measure the time of here.
     }];
 }

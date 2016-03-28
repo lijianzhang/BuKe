@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="JZBook" representedClassName="JZBook" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformable" syncable="YES"/>
+        <attribute name="binding" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bookID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isbn10" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isbn13" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="origin_title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pages" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pubdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publisher" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translator" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformable" syncable="YES"/>
+        <attribute name="usertags" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformable" syncable="YES"/>
+        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JZComment" inverseName="book" inverseEntity="JZComment" syncable="YES"/>
+        <relationship name="rating" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JZRating" inverseName="book" inverseEntity="JZRating" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JZTag" inverseName="book" inverseEntity="JZTag" syncable="YES"/>
+    </entity>
+    <entity name="JZComment" representedClassName="JZComment" syncable="YES">
+        <attribute name="average" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="bookID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gradeType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformable" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JZBook" inverseName="comment" inverseEntity="JZBook" syncable="YES"/>
+    </entity>
+    <entity name="JZRating" representedClassName="JZRating" syncable="YES">
+        <attribute name="average" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numRaters" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JZBook" inverseName="rating" inverseEntity="JZBook" syncable="YES"/>
+    </entity>
+    <entity name="JZTag" representedClassName="JZTag" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JZBook" inverseName="tags" inverseEntity="JZBook" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="JZBook" positionX="-13241" positionY="-528193" width="128" height="313"/>
+        <element name="JZComment" positionX="-13239" positionY="-527814" width="128" height="163"/>
+        <element name="JZRating" positionX="-12863" positionY="-528151" width="128" height="103"/>
+        <element name="JZTag" positionX="-12861" positionY="-527949" width="128" height="103"/>
+    </elements>
+</model>
