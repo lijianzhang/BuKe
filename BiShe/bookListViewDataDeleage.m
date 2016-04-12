@@ -21,7 +21,7 @@ static NSString *const identifier = @"bookList";
     if (self) {
         NSMutableArray *array = [NSMutableArray array];        
         for (JZComment *comment in data) {
-            NSLog(@"%@",comment.book.title);
+
             if(!comment.book)
                 continue;
             [array addObject:comment.book];
@@ -44,7 +44,6 @@ static NSString *const identifier = @"bookList";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"%@",self.selectBook);
     if (self.selectBook) {
         self.selectBook(indexPath);
 

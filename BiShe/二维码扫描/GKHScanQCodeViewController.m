@@ -108,7 +108,7 @@
     isPush = YES;
     UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
     mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    mediaUI.mediaTypes = [UIImagePickerController         availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    mediaUI.mediaTypes = [UIImagePickerController  availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     mediaUI.allowsEditing = NO;
     mediaUI.delegate = self;
     [self presentViewController:mediaUI animated:YES completion:^{

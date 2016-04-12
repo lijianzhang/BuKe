@@ -278,4 +278,8 @@ IB_DESIGNABLE
     self.navigationController.view.userInteractionEnabled = YES;
 }
 
+- (void)dealloc{
+    NSLog(@"HomeViewController被释放");
+}
+
 @end

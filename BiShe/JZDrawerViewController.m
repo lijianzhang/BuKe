@@ -11,10 +11,10 @@
 @interface JZDrawerViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userPortrait;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
-@property (nonatomic,strong)UIViewController<JZDrawerControllerProtocol>  *homeViewController;
-@property(nonatomic,strong)UIViewController<JZDrawerControllerProtocol> *bookListViewController;/**<<#text#> */
-@property(nonatomic,strong)UIViewController<JZDrawerControllerProtocol> *userViewController;
-@property(nonatomic,strong)UIViewController<JZDrawerControllerProtocol> *LoginViewController;
+@property (nonatomic,weak)UIViewController<JZDrawerControllerProtocol>  *homeViewController;
+@property(nonatomic,weak)UIViewController<JZDrawerControllerProtocol> *bookListViewController;/**<<#text#> */
+@property(nonatomic,weak)UIViewController<JZDrawerControllerProtocol> *userViewController;
+@property(nonatomic,weak)UIViewController<JZDrawerControllerProtocol> *LoginViewController;
 
 @property(nonatomic,assign)NSUInteger number;
 @property (nonatomic,assign,getter=isHaveUser)BOOL haveUser;
@@ -73,6 +73,7 @@
         }
         
     }else{
+        self.haveUser = NO;
         self.userName.text = @"立即登陆";
         [self.userPortrait setImage:[UIImage imageNamed:@"login_default_icon"]];
     }
@@ -93,7 +94,7 @@
                 
             }];
         }
-        self.number = 1;
+        self.number = 0;
     }
 }
 - (IBAction)pushHome:(id)sender {

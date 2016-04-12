@@ -22,7 +22,7 @@ MJCodingImplementation
 + (void)removeUser{
     NSError *error;
     if (![[[NSFileManager alloc]init] removeItemAtPath:IWAccountFile error:&error]) {
-        NSLog(@"%@",error);
+
     } ;
 }
 + (instancetype)loadUser{

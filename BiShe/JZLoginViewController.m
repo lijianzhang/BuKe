@@ -12,9 +12,10 @@
 
 #import "JZPromptView.h"
 #import "JZHUD.h"
+IB_DESIGNABLE
 @interface JZLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passWordTextField;
+@property (weak, nonatomic)IBInspectable IBOutlet UITextField *passWordTextField;
 @property(nonatomic,strong)JZPromptView *promptView;;/**<<#text#> */
 @property (weak, nonatomic) IBOutlet UIButton *sumbitButton;
 @end
@@ -26,7 +27,7 @@
     self.promptView = [JZPromptView prompt];
     self.userTextField.transform = CGAffineTransformMakeTranslation(-300, 0);
     self.passWordTextField.transform = CGAffineTransformMakeTranslation(300, 0);
-    self.sumbitButton.layer.cornerRadius = 5;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +38,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 
-    [UIView animateWithDuration:1.0f delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:2 options:0 animations:^{
+    [UIView animateWithDuration:1.0f delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:1 options:0 animations:^{
         self.userTextField.transform = CGAffineTransformIdentity;
         self.passWordTextField.transform = CGAffineTransformIdentity;
 
@@ -66,8 +67,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)dealloc{
+}
 - (IBAction)closeView:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 - (void)drawerControllerWillOpen:(JZRootViewController *)drawerController{
     self.view.userInteractionEnabled = NO;

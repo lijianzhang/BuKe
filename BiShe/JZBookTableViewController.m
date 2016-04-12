@@ -149,7 +149,7 @@
 }
 
 - (void)dealloc{
-    NSLog(@"已销毁");
+    NSLog(@"销毁了Book控制器");
 }
 
 

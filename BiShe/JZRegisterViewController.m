@@ -43,6 +43,13 @@
     }];
 }
 
+- (IBAction)close:(id)sender{
+//    UIViewController *vc = sender.sourceViewController;
+//    if ([vc isKindOfClass:[JZRegisterViewController class]]) {
+//        NSLog(@"register");
+//    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

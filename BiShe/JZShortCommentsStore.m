@@ -32,7 +32,7 @@
 
 - (void)setStar:(NSString *)star{
     NSInteger number = [star intValue] *2;
-    _star =  [NSString stringWithFormat:@"%ld",number];
+    _star =  [NSString stringWithFormat:@"%ld",(long)number];
 }
 - (void)setContent:(NSString *)content{
     content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

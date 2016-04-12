@@ -640,7 +640,6 @@
  
  @param completionBlock 当事务完成时这个块将被触发，无论成功与否。
  */
-
 - (void) runTransactionBlock:(WTransactionResult* (^) (WMutableData* currentData))block andCompletionBlock:(void (^) (NSError* error, BOOL committed, WDataSnapshot* snapshot))completionBlock;
 
 
@@ -728,7 +727,7 @@
  *
  *  @param queue 给所有的Wilddog事件类型设置的默认队列
  */
-+ (void)setDispatchQueue:(dispatch_queue_t)queue;
++ (void)setDispatchQueue:(dispatch_queue_t)queue __attribute__((deprecated("Use [Wilddog defaultConfig].callbackQueue instead")));
 
 
 @end

@@ -34,7 +34,6 @@ static NSString *const tagsData = @"http://api.douban.com/v2/book/%@/tags";/**< 
 - (CoreDataHelper *)helper{
     if (!_helper) {
         _helper = [CoreDataHelper helper];
-        [YYWebImageManager sharedManager].queue.maxConcurrentOperationCount = 6;
     }
     return _helper;
 }
@@ -70,8 +69,6 @@ static NSString *const tagsData = @"http://api.douban.com/v2/book/%@/tags";/**< 
         [JZHUD showHUDandTitle:nil];
     }
     [self.mymanager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
         JZBooksStore *booksStore = [JZBooksStore mj_objectWithKeyValues:responseObject];
 
         success(booksStore);
@@ -195,7 +192,7 @@ static NSString *const tagsData = @"http://api.douban.com/v2/book/%@/tags";/**< 
  *  @param success <#success description#>
  */
 - (void)datawithshortComments:(NSString *)number page:(NSInteger)page success:(Jz_success)success fail:(void(^)(NSError *error)) fail{
-    NSString *url = [NSString stringWithFormat:shortComments,number,page];
+    NSString *url = [NSString stringWithFormat:shortComments,number,(long)page];
     [self.mymanager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
 //
@@ -216,7 +213,7 @@ static NSString *const tagsData = @"http://api.douban.com/v2/book/%@/tags";/**< 
  *  @param success <#success description#>
  */
 - (void)datawithComments:(NSString *)number page:(NSInteger)page success:(Jz_success)success fail:(void(^)(NSError *error)) fail{
-    NSString *url = [NSString stringWithFormat:Comments,number,page];
+    NSString *url = [NSString stringWithFormat:Comments,number,(long)page];
     //    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self.mymanager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

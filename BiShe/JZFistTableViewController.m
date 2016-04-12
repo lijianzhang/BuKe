@@ -97,7 +97,6 @@
     if ([segue.identifier isEqualToString:@"fistView2WebView"]) {
         JZWebViewController *vc = segue.destinationViewController;
         vc.bookId = [self.bookDataModel bookViewId];
-        NSLog(@"%@",vc.bookId);
     }else if ([segue.identifier isEqualToString:@"fistTableVIew2BookDataView"]){
         JZBookDataViewController *vc = segue.destinationViewController;
         vc.bookData = self.bookDataModel;
@@ -107,7 +106,6 @@
         vc.gradeType = GradeTypeYiDu;
         vc.comment = self.comment;
         vc.bookId = [self.bookDataModel bookViewId];
-        NSLog(@"%@",vc.bookId);
         vc.deleage = self;
     }
 }
@@ -116,7 +114,6 @@
     vc.gradeType = sender.tag;
     vc.comment = self.comment;
     vc.bookId = [self.bookDataModel bookViewId];
-    NSLog(@"%@",vc.bookId);
     vc.deleage = self;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -52,7 +52,6 @@
         rect.origin.x = CGRectGetMaxX(rect)+8;
     }
     rect.size.width = width;
-    NSLog(@"%@",[NSValue valueWithCGRect:rect]);
     JZTabButton *button = [[JZTabButton alloc]initWithFrame:rect title:name];
     [self.tagButtonsArray addObject:button];
     __weak typeof(self)weekSelf = self;

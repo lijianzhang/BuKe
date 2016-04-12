@@ -40,14 +40,7 @@ IB_DESIGNABLE
     self.average.text = [Model bookViewaverage];
     self.bookStar.showStar = [NSNumber numberWithFloat:[[Model bookViewaverage] floatValue]];
     ///加载图片
-    NSLog(@"%@",[Model bookViewImageUrl]);
-    [self.BookImageView yy_setImageWithURL:[NSURL URLWithString:[Model bookViewImageUrl]] options:YYWebImageOptionSetImageWithFadeAnimation];
-    
-//    [self.BookImageView yy_setImageWithURL:[NSURL URLWithString:[Model bookViewImageUrl]] placeholder:nil options:YYWebImageOptionSetImageWithFadeAnimation progress:nil transform:^UIImage *(UIImage *image, NSURL *url) {
-//        return[image yy_imageByRoundCornerRadius:4];
-//        
-//    } completion:nil];
-
+    [self.BookImageView yy_setImageWithURL:[NSURL URLWithString:[Model bookViewImageUrl]] placeholder:[UIImage imageNamed:@"placeholder"]];
     
 }
 

@@ -46,9 +46,8 @@
                     [carList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         [[[wildog childByAppendingPath:[NSString stringWithFormat:@"cars"]] childByAutoId] updateChildValues:obj withCompletionBlock:^(NSError *error, Wilddog *ref) {
                             if (error) {
-                                NSLog(@"失败%d",i);
-                            }else
-                                NSLog(@"完成第%d个",i);
+
+                            }
                         }];
                         
                         
@@ -56,7 +55,7 @@
                 }
                 
                 else{
-                    NSLog(@"%d没有数据",i);
+
                 }
             });
         

@@ -110,7 +110,6 @@
  */
 - (void)editUserIamge:(UIImage *)image withSuccess:(void (^)()) suceess fail:(void(^)(NSError *error)) fail{
     userStroe *user = [userStroe loadUser];
-    NSLog(@"%@",user.uid);
     [JZHUD showHUDandTitle:nil];
     [[self.wilddog childByAppendingPath:[NSString stringWithFormat:@"images/%@",user.uid]]setValue:[user UIImageToBase64Str:image] withCompletionBlock:^(NSError *error, Wilddog *ref) {
         if (error) {
@@ -126,7 +125,6 @@
  *  添加修改收藏
  */
 - (void)addBookWithType:(GradeType)type bookId:(NSString *)bookId tags:(NSArray *)tags average:(NSInteger)average content:(NSString *)content withSuccess:(void (^)())suceess fail:(void(^)(NSError *error)) fail{
-    NSLog(@"bookID %@",bookId);
     NSMutableDictionary *tag = [NSMutableDictionary dictionary];
     for (int i=0; i<tags.count; i++) {
         tag[[NSString stringWithFormat:@"%d",i]] = tags[i];
@@ -156,37 +154,35 @@
         
         [dog setValue:dict withCompletionBlock:^(NSError *error, Wilddog *ref) {
             JZBook *obj = [self.helper searchDataWihtBookId:bookId];
-            NSLog(@"book = %@ and book.booid -%@",obj,obj.bookID);
             NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
+            userDict[@"average"] = @(average);
+            userDict[@"gradeType"]=@(type);
+            userDict[@"key"]=key;
+            userDict[@"bookID"]=bookId;
             if (obj.bookID) {
                 userDict[@"title"]=[obj bookViewtitle];
-                userDict[@"key"]=key;
-                userDict[@"average"] = @(average);
-                userDict[@"gradeType"]=@(type);
                 userDict[@"image"]=[obj bookViewImageUrl];
                 
                 if (tags.count>0) {
                     userDict[@"tags"] = tags;
                 }
                 JZComment *comment = [self.helper searchCommentWihtBookId:bookId].firstObject;
-                NSLog(@"elseSearchComment = %@",comment);
+
                 if (comment) {
                     [comment mj_setKeyValues:userDict];
                 }else{
                     comment = [JZComment mj_objectWithKeyValues:userDict context:self.helper.context];
                 }
                 comment.bookID = bookId;
-                NSLog(@"elseSearchComment = %@",comment);
+
                 
-                NSLog(@"添加的图书数据comment%@",comment.bookID);
+
                 comment.average = @(average);
                 comment.shortContent = content;
                 comment.book = obj;
                 [self.helper saveContext];
             }else{
-                userDict[@"average"] = @(average);
-                userDict[@"gradeType"]=@(type);
-                userDict[@"key"]=key;
+
                 JZComment *comment = [self.helper searchCommentWihtBookId:bookId].firstObject;
                 if (comment) {
                     [comment mj_setKeyValues:userDict];
@@ -194,13 +190,11 @@
                     comment = [JZComment mj_objectWithKeyValues:userDict context:self.helper.context];
                 }
                 comment.bookID = bookId;
-                NSLog(@"searchComment = %@",comment);
-
             }
 
             [[weekSelf.wilddog childByAppendingPath:[NSString stringWithFormat:@"users/%@/Comment/%@",[userStroe loadUser].uid,bookId]]setValue:userDict withCompletionBlock:^(NSError *error, Wilddog *ref) {
                 if (error) {
-                    NSLog(@"%@",error);
+    
                 }
                 else{
                 suceess();
@@ -221,7 +215,7 @@
         NSArray *comments = [self.helper searchCommentWihtBookId:bookId];
         if (comments.count>0) {
             //从数据库加载
-            NSLog(@"从数据库加载comment%@",comments.firstObject);
+
             suceess(comments.firstObject);
         }else{
         
@@ -257,14 +251,14 @@
         NSMutableArray<JZComment *> *ZaiDu = [NSMutableArray array];
         NSMutableArray<JZComment *> *YiDu = [NSMutableArray array];
         for (JZComment *comment in array) {/**< 判断评论数据是否有图书数据 */
-            NSLog(@"comment.book.title %@",comment.book.title);
+
             if (!comment.book) {/**< 没有数据则上网获取 */
                  dispatch_group_enter(group);
                 [[JZNewWorkTool workTool]dataWithBookid:comment.bookID success:^(id obj) {
                     comment.book = obj;
                     dispatch_group_leave(group);
                 } fail:^(NSError *error) {
-                    NSLog(@"%@",error);
+
                     dispatch_group_leave(group);
                 }];
             }

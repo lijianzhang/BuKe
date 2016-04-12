@@ -62,6 +62,8 @@
 }
 
 
-
+- (void)dealloc{
+    NSLog(@"UserTableViewController被释放");
+}
 
 @end

@@ -29,6 +29,7 @@
     toVc.view.alpha = 0;
     cell.imageVIew.hidden = YES;
     toVc.bookimage.hidden = YES;
+    [contentView layoutIfNeeded];
     [UIView animateWithDuration:0.75f delay:0 usingSpringWithDamping:0.75 initialSpringVelocity:1/0.75 options:0 animations:^{
         toVc.view.alpha = 1;
         tempVIew.frame = [toVc.bookimage convertRect:toVc.bookimage.bounds toView:contentView];

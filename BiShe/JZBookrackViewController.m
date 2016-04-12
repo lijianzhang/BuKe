@@ -66,7 +66,6 @@
 #pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    NSLog(@"%ld",self.books.count);
 //    return self.books.count;
 //}
 
@@ -111,6 +110,9 @@ static NSString *const identifer = @"bookClass";
     [self.drawer open];
 }
 
+- (void)dealloc{
+    NSLog(@"UserTableViewController被释放");
 
+}
 
 @end
