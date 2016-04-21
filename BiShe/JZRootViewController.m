@@ -92,6 +92,7 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.centerViewController];
     [self addChildViewController:nav];
+//    nav.navigationBar.barTintColor = [UIColor colorWithRed:74/255.0 green:184/255.0 blue:58/255.0 alpha:1];
     self.centerViewController.view.frame = self.view.bounds;
     [self.centerView addSubview:nav.view];
     [self.centerViewController didMoveToParentViewController:self];
@@ -105,9 +106,6 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 }
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)panGestureRecognizer
 {
-    
-    
-    
     UIGestureRecognizerState state = panGestureRecognizer.state;
     CGPoint location = [panGestureRecognizer locationInView:self.view];
     CGPoint velocity = [panGestureRecognizer velocityInView:self.view];

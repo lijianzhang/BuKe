@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kb6-xa-KAG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kb6-xa-KAG">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1352,7 +1351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9H-5q-2Bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="-2300"/>
+            <point key="canvasLocation" x="1321" y="-2324"/>
         </scene>
         <!--Drawer View Controller-->
         <scene sceneID="j5k-3n-NvV">
@@ -1805,6 +1804,22 @@
             </objects>
             <point key="canvasLocation" x="395" y="1426"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xZ9-9Q-w6V">
+            <objects>
+                <navigationController storyboardIdentifier="JZUserController" id="g0Y-zS-ke0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cqi-i5-JvH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HhH-gv-nKR" kind="relationship" relationship="rootViewController" id="E2y-ow-cRk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uQi-hL-MMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="2112"/>
+        </scene>
         <!--登陆界面-->
         <scene sceneID="kdh-j6-QMr">
             <objects>
@@ -1843,7 +1858,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="注册"/>
                                         <connections>
-                                            <segue destination="fkT-Vn-FX9" kind="modal" modalTransitionStyle="coverVertical" id="ajy-xs-R6c"/>
+                                            <segue destination="fkT-Vn-FX9" kind="push" id="ajy-xs-R6c"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1966,7 +1981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwf-gY-NfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="467" y="2112"/>
+            <point key="canvasLocation" x="558" y="2112"/>
         </scene>
         <!--注册界面-->
         <scene sceneID="rWX-wy-zrH">
@@ -1980,7 +1995,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfy-gc-XIw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfy-gc-XIw">
                                 <rect key="frame" x="85" y="282" width="150" height="35"/>
                                 <color key="backgroundColor" red="0.28875995929999998" green="0.72165412299999998" blue="0.2283521157" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1998,101 +2013,117 @@
                                     <action selector="logining:" destination="HhH-gv-nKR" eventType="touchUpInside" id="RoB-Oc-9Rt"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WU0-An-F2r">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WU0-An-F2r">
                                 <rect key="frame" x="0.0" y="97" width="320" height="155"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r2u-IP-nFd">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="r2u-IP-nFd">
                                         <rect key="frame" x="0.0" y="4" width="320" height="30"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="Uuh-wt-sjq">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="Uuh-wt-sjq">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="6pe-JS-lrX"/>
                                                     <constraint firstAttribute="width" constant="30" id="z3W-eS-cow"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2KN-Xn-SVy">
-                                                <rect key="frame" x="30" y="7" width="290" height="17"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2KN-Xn-SVy">
+                                                <rect key="frame" x="30" y="7" width="290" height="16"/>
                                                 <color key="tintColor" red="0.28875995929999998" green="0.72165412299999998" blue="0.2283521157" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Uuh-wt-sjq" firstAttribute="top" secondItem="r2u-IP-nFd" secondAttribute="top" id="GEr-pN-IRh"/>
+                                            <constraint firstItem="2KN-Xn-SVy" firstAttribute="top" secondItem="r2u-IP-nFd" secondAttribute="top" constant="7" id="oME-cW-7Fm"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2tx-eh-hHd">
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2tx-eh-hHd">
                                         <rect key="frame" x="0.0" y="82" width="320" height="30"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="EOc-Fz-Bk4">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="EOc-Fz-Bk4">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="YjS-DN-B3R"/>
                                                     <constraint firstAttribute="height" constant="30" id="oDe-GY-8vy"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码(6-16位)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c55-5e-amN">
-                                                <rect key="frame" x="30" y="7" width="290" height="17"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码(6-16位)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="c55-5e-amN">
+                                                <rect key="frame" x="30" y="7" width="290" height="16"/>
                                                 <color key="tintColor" red="0.20392156859999999" green="0.70196078429999997" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="c55-5e-amN" firstAttribute="top" secondItem="2tx-eh-hHd" secondAttribute="top" constant="7" id="9XA-Nk-gyH"/>
+                                            <constraint firstItem="EOc-Fz-Bk4" firstAttribute="top" secondItem="2tx-eh-hHd" secondAttribute="top" id="EeV-NO-fpa"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-fC-eC1">
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-fC-eC1">
                                         <rect key="frame" x="0.0" y="121" width="320" height="30"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-tr-BEg">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-tr-BEg">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="fzQ-56-TUF"/>
                                                     <constraint firstAttribute="width" constant="30" id="thb-aZ-dVc"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="重复密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Idn-Xf-KSX">
-                                                <rect key="frame" x="30" y="7" width="290" height="17"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="重复密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Idn-Xf-KSX">
+                                                <rect key="frame" x="30" y="7" width="290" height="16"/>
                                                 <color key="tintColor" red="0.20392156859999999" green="0.70196078429999997" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ng5-tr-BEg" firstAttribute="top" secondItem="fdl-fC-eC1" secondAttribute="top" id="vu7-6A-jjH"/>
+                                            <constraint firstItem="Idn-Xf-KSX" firstAttribute="top" secondItem="fdl-fC-eC1" secondAttribute="top" constant="7" id="yjH-qh-LVY"/>
+                                        </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BnM-Oi-tBu">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="BnM-Oi-tBu">
                                         <rect key="frame" x="25" y="38" width="270" height="1"/>
                                         <color key="backgroundColor" white="0.94882550340000005" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="IsA-pv-elz"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S4E-qh-Wru">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="S4E-qh-Wru">
                                         <rect key="frame" x="25" y="77" width="270" height="1"/>
                                         <color key="backgroundColor" white="0.94882550340000005" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="oNu-Mw-bbI"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ety-OS-r9W">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Ety-OS-r9W">
                                         <rect key="frame" x="25" y="116" width="270" height="1"/>
                                         <color key="backgroundColor" white="0.94882550340000005" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="LdC-76-qzO"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xhp-ZV-Y93">
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Xhp-ZV-Y93">
                                         <rect key="frame" x="0.0" y="43" width="320" height="30"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="DUY-3h-wqP">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="DUY-3h-wqP">
                                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="6Qu-QO-Lvj"/>
                                                     <constraint firstAttribute="height" constant="30" id="gwf-GV-K7w"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称(4-16字) " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCT-Or-d1K">
-                                                <rect key="frame" x="30" y="7" width="290" height="17"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称(4-16字) " textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PCT-Or-d1K">
+                                                <rect key="frame" x="30" y="7" width="290" height="16"/>
                                                 <color key="tintColor" red="0.20392156859999999" green="0.70196078429999997" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="DUY-3h-wqP" firstAttribute="top" secondItem="Xhp-ZV-Y93" secondAttribute="top" id="HPP-0q-yMo"/>
+                                            <constraint firstItem="PCT-Or-d1K" firstAttribute="top" secondItem="Xhp-ZV-Y93" secondAttribute="top" constant="7" id="Zz0-zW-vE5"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2158,6 +2189,7 @@
                             <constraint firstItem="aif-ic-L9K" firstAttribute="top" secondItem="aHH-aj-kev" secondAttribute="top" id="01J-4V-Lc4"/>
                             <constraint firstItem="Wfy-gc-XIw" firstAttribute="centerX" secondItem="aHH-aj-kev" secondAttribute="centerX" id="76z-O9-9FT"/>
                             <constraint firstItem="Wfy-gc-XIw" firstAttribute="top" secondItem="WU0-An-F2r" secondAttribute="bottom" constant="30" id="AUF-dW-mCW"/>
+                            <constraint firstItem="WU0-An-F2r" firstAttribute="top" secondItem="aif-ic-L9K" secondAttribute="bottom" constant="41" id="gUE-nl-Lw8"/>
                             <constraint firstAttribute="trailing" secondItem="aif-ic-L9K" secondAttribute="trailing" id="lMo-cV-l1O"/>
                             <constraint firstItem="aif-ic-L9K" firstAttribute="leading" secondItem="aHH-aj-kev" secondAttribute="leading" id="mIe-lL-AcF"/>
                             <constraint firstAttribute="trailing" secondItem="WU0-An-F2r" secondAttribute="trailing" id="sFo-f7-ebe"/>
@@ -2175,7 +2207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVt-pB-rcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="2112"/>
+            <point key="canvasLocation" x="1042" y="2112"/>
         </scene>
         <!--书单-->
         <scene sceneID="Dbw-mk-ZYD">
@@ -2457,7 +2489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQQ-7R-Odu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="912" y="349"/>
+            <point key="canvasLocation" x="923" y="349"/>
         </scene>
         <!--更多书评界面-->
         <scene sceneID="kHn-YX-wRu">
@@ -3018,7 +3050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OP4-xB-8bP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="510" y="-334"/>
+            <point key="canvasLocation" x="610" y="-290"/>
         </scene>
     </scenes>
     <resources>

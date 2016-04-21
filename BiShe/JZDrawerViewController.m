@@ -50,7 +50,7 @@
 
 - (UIViewController<JZDrawerControllerProtocol> *)LoginViewController{
     if (!_LoginViewController) {
-        _LoginViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"JZLoginViewController"];
+        _LoginViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"JZUserController"];
     }
     return _LoginViewController;
 }

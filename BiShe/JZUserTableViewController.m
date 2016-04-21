@@ -55,6 +55,9 @@
 #pragma mark - Table view data source
 
 - (IBAction)pushLoginVIew:(id)sender {
+    
+    
+    
     if (!self.isHaveUser) {
         JZLoginViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"JZLoginViewController"];
         [self.navigationController pushViewController:vc animated:YES];

@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
 @property (nonatomic, assign)JZPromptAnimateState AnimateState;
 @property (nonatomic,strong)CAAnimationGroup *drop;
 @property (nonatomic,strong)CAAnimationGroup *hide;
-
+@property (nonatomic,strong)UIColor *color;
 @end
 
 @implementation JZPromptView
@@ -29,7 +29,6 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
     promptView.textAlignment = NSTextAlignmentCenter;
     promptView.textColor = [UIColor whiteColor];
     promptView.backgroundColor = [UIColor colorWithRed:52/255.0 green:179/255.0 blue:64/255.0 alpha:1];
-
     [promptView.layer setCornerRadius:15];
     promptView.layer.masksToBounds = YES;
     return promptView;
@@ -39,19 +38,17 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
         case -1009:
             self.text = @"无网络，请检查设置";
             break;
-            
+        case -16:
+            self.text = @"账号或密码错误";
         default:
             self.text = @"无网络，请检查设置";
             break;
     }
-    CGFloat labelwiht = [self.text boundingRectWithSize:CGSizeMake(1000, 30) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.width+60;
-    CGFloat windowWith = [UIScreen mainScreen].bounds.size.width;
-    CGRect rect = CGRectMake(windowWith/2.0-labelwiht/2.0, 0, labelwiht, 30);
-    //        [self sizeToFit];
-    self.frame = rect;
+
     
 
 }
+
 - (void)starShow{
     switch (self.AnimateState) {
         case JZPromptAnimateStateWillDrop:
@@ -63,6 +60,36 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
         case JZPromptAnimateStatedidHide:
             [[UIApplication sharedApplication].windows.lastObject addSubview:self];
             [self dropAnimate];
+            break;
+        default:
+        case JZPromptAnimateStateDidDrop:
+            [self hideAnimate];
+            break;
+    }
+}
+- (void)setTempColor:(UIColor *)color andTitle:(NSString *)title{
+    [self setColor:color];
+    [self starShowWithTitle:title];
+}
+
+- (void)starShowWithTitle:(NSString *)title{
+    self.text = title;
+    CGFloat labelwiht = [self.text boundingRectWithSize:CGSizeMake(1000, 30) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.width+60;
+    CGFloat windowWith = [UIScreen mainScreen].bounds.size.width;
+    CGRect rect = CGRectMake(windowWith/2.0-labelwiht/2.0, 0, labelwiht, 30);
+    //        [self sizeToFit];
+    self.frame = rect;
+    switch (self.AnimateState) {
+        case JZPromptAnimateStateWillDrop:
+            return;
+            break;
+        case JZPromptAnimateStateWillHide:
+            [self hideAnimate];
+            break;
+        case JZPromptAnimateStatedidHide:
+            [[UIApplication sharedApplication].windows.lastObject addSubview:self];
+            [self dropAnimate];
+            break;
         default:
         case JZPromptAnimateStateDidDrop:
             [self hideAnimate];
@@ -111,6 +138,7 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
     hide.fillMode=kCAFillModeForwards;
     hide.removedOnCompletion = NO;
     [self.layer addAnimation:hide forKey:@"hide"];
+    
 
 }
 
@@ -121,7 +149,7 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
             [self hideAnimate];
         }else if (self.AnimateState == JZPromptAnimateStateWillHide){
             self.AnimateState = JZPromptAnimateStatedidHide;
-            [self removeFromSuperview];
+//            [self removeFromSuperview];
         }
 
 }
@@ -133,5 +161,9 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
         self.AnimateState = JZPromptAnimateStateWillHide;
     }
 
+}
+
+- (void)setColor:(UIColor*)color{
+    self.backgroundColor = color;
 }
 @end

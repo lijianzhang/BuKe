@@ -56,10 +56,29 @@
 /**
  *  注册
  */
-- (void)createUser:(NSString *)email password:(NSString *)password name:(NSString *)name withSuccess:(void (^)()) suceess fail:(void(^)(NSError *error)) fail{
+- (void)createUser:(NSString *)email password:(NSString *)password name:(NSString *)name withSuccess:(void (^)()) suceess fail:(void(^)(NSString *string)) fail{
    [self.wilddog createUser:email password:password withValueCompletionBlock:^(NSError *error, NSDictionary *result) {
        if (error) {
-           fail(error);
+           switch (error.code) {
+               case WAuthenticationErrorUserDoesNotExist:
+                   // 无效的用户
+                   fail(@"无效密码");
+                   break;
+               case WAuthenticationErrorInvalidEmail:
+                   // 无效的电子邮件
+                   fail(@"无效的电子邮件");
+                   break;
+               case WAuthenticationErrorInvalidPassword:
+                   // 错误的密码
+                   fail(@"错误的密码");
+                   break;
+                case WAuthenticationErrorEmailTaken:
+                   fail(@"邮箱号码已被使用");
+                   break;
+               default:
+                   fail(@"未知错误");
+                   break;
+           }
            NSLog(@"失败");
        }else{
            NSString * uid =[result[@"uid"] componentsSeparatedByString:@":"][1];
@@ -78,11 +97,27 @@
  *  邮箱登陆
  *
  */
-- (void)loginUser:(NSString *)email password:(NSString *)password WithBlock:(void(^)(NSError *error, WAuthData *authData) )block fail:(void(^)(NSError *error)) fail{
+- (void)loginUser:(NSString *)email password:(NSString *)password WithBlock:(void(^)(NSError *error, WAuthData *authData) )block fail:(void(^)(NSString *string)) fail{
     [self.wilddog authUser:email password:password withCompletionBlock:^(NSError *error, WAuthData *authData) {
         
         if (error) {
-            fail(error);
+            switch (error.code) {
+                case WAuthenticationErrorUserDoesNotExist:
+                    // 无效的用户
+                    fail(@"无效密码");
+                    break;
+                case WAuthenticationErrorInvalidEmail:
+                    // 无效的电子邮件
+                    fail(@"无效的电子邮件");
+                    break;
+                case WAuthenticationErrorInvalidPassword:
+                    // 错误的密码
+                    fail(@"错误的密码");
+                    break;
+                default:
+                    fail(@"未知错误");
+                    break;
+            }
         }else{
           __block  userStroe *user = [[userStroe alloc]init];
             NSString * uid =[authData.uid componentsSeparatedByString:@":"][1];

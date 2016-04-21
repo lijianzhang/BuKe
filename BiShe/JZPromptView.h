@@ -13,5 +13,7 @@
 + (instancetype)prompt;
 - (void)starShow;
 - (void)setError:(NSError *)error;
-
+- (void)setColor:(UIColor*)color;
+- (void)starShowWithTitle:(NSString *)title;
+- (void)setTempColor:(UIColor*)color andTitle:(NSString *)title;
 @end

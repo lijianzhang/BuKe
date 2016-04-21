@@ -27,6 +27,21 @@ IB_DESIGNABLE
     self.promptView = [JZPromptView prompt];
     self.userTextField.transform = CGAffineTransformMakeTranslation(-300, 0);
     self.passWordTextField.transform = CGAffineTransformMakeTranslation(300, 0);
+    self.sumbitButton.enabled = NO;
+    self.sumbitButton.alpha = 0.8f;
+    [self.userTextField addTarget:self action:@selector(changeText) forControlEvents:UIControlEventEditingChanged];
+    [self.passWordTextField addTarget:self action:@selector(changeText) forControlEvents:UIControlEventEditingChanged];
+    self.navigationController.navigationBarHidden = YES;
+
+}
+- (void)changeText{
+    if (![self.userTextField.text isEqualToString:@""]&&![self.passWordTextField.text isEqualToString:@""]) {
+        self.sumbitButton.enabled = YES;
+        self.sumbitButton.alpha = 1;
+    }else{
+        self.sumbitButton.enabled = NO;
+        self.sumbitButton.alpha = 0.8f;
+    }
 
 }
 
@@ -46,14 +61,30 @@ IB_DESIGNABLE
 }
 
 - (IBAction)logining:(id)sender {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    if (![predicate evaluateWithObject:self.userTextField.text]) {
+        [self.promptView setColor:[UIColor redColor]];
+        [self.promptView starShowWithTitle:@"邮箱格式不正确"];
+
+        return;
+    }
+    NSString *passwordRegex = @"^[a-zA-Z0-9]\\w{5,17}$";
+    NSPredicate *passwordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passwordRegex];
+    if (![passwordPredicate evaluateWithObject:self.passWordTextField.text]) {
+        [self.promptView setColor:[UIColor redColor]];
+        [self.promptView starShowWithTitle:@"密码格式不正确"];
+        return;
+
+    }
     [JZHUD showHUDandTitle:@""];
     [[JZWildDog WildDog]loginUser:self.userTextField.text password:self.passWordTextField.text WithBlock:^(NSError *error, WAuthData *authData) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [JZHUD showSuccessandTitle:@""];
-    }fail:^(NSError *error) {
-        [JZHUD showFailandTitle:@""];
-        [self.promptView  setError:error];
-        [self.promptView starShow];
+    }fail:^(NSString *string) {
+        [JZHUD dismissHUD];
+        [self.promptView setColor:[UIColor redColor]];
+        [self.promptView starShowWithTitle:string];
     }];
     
 
@@ -68,6 +99,7 @@ IB_DESIGNABLE
 }
 */
 - (void)dealloc{
+
 }
 - (IBAction)closeView:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -80,4 +112,7 @@ IB_DESIGNABLE
 - (void)drawerControllerDidClose:(JZRootViewController *)drawerController{
     self.view.userInteractionEnabled = YES;
 }
+
+
+
 @end

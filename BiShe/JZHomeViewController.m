@@ -217,7 +217,7 @@ IB_DESIGNABLE
         [view removeFromSuperview];
     }
     
-    for (int i=(int)number-1; i<number+1; i++) {
+    for (int i=(int)number-1; i-1<number+2; i++) {
         UITableView *table =self.cacheViews[[NSString stringWithFormat:@"%d",i]];
         [self.contentView addSubview:table];
     }
