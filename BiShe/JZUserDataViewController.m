@@ -16,7 +16,15 @@
 
 @implementation JZUserDataViewController
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeData) name:@"changeUserData" object:nil];
 
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self changeData];
+}
 
 
 - (IBAction)editUserImage:(id)sender {
@@ -56,12 +64,14 @@
     [self.userImage setImage:image];
     [[JZWildDog WildDog]editUserIamge:image withSuccess:^{
         NSLog(@"成功");
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"changeUserData" object:nil];
+        
         [self dismissViewControllerAnimated:YES completion:nil];
     } fail:nil];
 
 }
 - (IBAction)exitUser:(id)sender {
-    UIViewController<JZDrawerControllerProtocol > *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"JZLoginViewController"];
+    UIViewController<JZDrawerControllerProtocol > *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"JZUserController"];
 //    [self.drawer replaceCenterViewControllerWithViewController:vc];
     [self presentViewController:vc animated:YES completion:^{
         [userStroe removeUser];
@@ -70,6 +80,18 @@
     
 
     
+}
+- (void)changeData{
+    userStroe *user = [userStroe loadUser];
+    if (user.imageString) {
+        UIImage *userImage = [user Base64StrToUIImage];
+        [self.userImage setImage:userImage];
+    }else{
+        [self.userImage setImage:[UIImage imageNamed:@"login_default_icon"]];
+    }
+}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)drawerControllerWillOpen:(JZRootViewController *)drawerController{

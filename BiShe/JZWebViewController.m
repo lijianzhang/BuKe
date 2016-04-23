@@ -10,7 +10,7 @@
 #import "JZHUD.h"
 @interface JZWebViewController ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-
+@property (assign, nonatomic,getter=isOpenSafari)BOOL openSafari;
 
 @end
 
@@ -21,6 +21,7 @@ static NSString *const basePath = @"http://frodo.douban.com/h5/book/%@/buylinks"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.openSafari = NO;
     // Do any additional setup after loading the view.
     NSString *urlPath = [NSString stringWithFormat:basePath,self.bookId];
     NSURL *url = [NSURL URLWithString:urlPath];
@@ -48,14 +49,22 @@ static NSString *const basePath = @"http://frodo.douban.com/h5/book/%@/buylinks"
 
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-
     [JZHUD showHUDandTitle:@""];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [JZHUD showSuccessandTitle:@""];
-}
+    self.openSafari = YES;
 
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSLog(@"%d",self.isOpenSafari);
+    if (self.isOpenSafari) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    }
+    return YES;
+}
 
 
 

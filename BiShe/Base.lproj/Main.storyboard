@@ -549,7 +549,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBV-fC-mZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="995" y="-786"/>
+            <point key="canvasLocation" x="1003" y="-606"/>
         </scene>
         <!--评分界面-->
         <scene sceneID="F99-e2-SaN">
@@ -896,7 +896,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="987" y="-1135"/>
+            <point key="canvasLocation" x="995" y="-955"/>
         </scene>
         <!--图书详细信息-->
         <scene sceneID="qBh-ly-joU">
@@ -1564,7 +1564,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1185" y="-274"/>
+            <point key="canvasLocation" x="-1849" y="-706"/>
         </scene>
         <!--侧滑栏-->
         <scene sceneID="x8l-0B-iG3">
@@ -1583,7 +1583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tmw-KH-MpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-751" y="-274"/>
+            <point key="canvasLocation" x="-1415" y="-706"/>
         </scene>
         <!--User Data View Controller-->
         <scene sceneID="eI4-mA-GtJ">
@@ -1802,7 +1802,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="395" y="1426"/>
+            <point key="canvasLocation" x="4" y="1113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xZ9-9Q-w6V">
@@ -1818,7 +1818,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQi-hL-MMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60" y="2112"/>
+            <point key="canvasLocation" x="-5" y="1888"/>
         </scene>
         <!--登陆界面-->
         <scene sceneID="kdh-j6-QMr">
@@ -1981,7 +1981,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwf-gY-NfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="2112"/>
+            <point key="canvasLocation" x="493" y="1888"/>
         </scene>
         <!--注册界面-->
         <scene sceneID="rWX-wy-zrH">
@@ -2207,7 +2207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FVt-pB-rcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="2112"/>
+            <point key="canvasLocation" x="977" y="1888"/>
         </scene>
         <!--书单-->
         <scene sceneID="Dbw-mk-ZYD">
@@ -2344,7 +2344,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWM-5a-vx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="510" y="349"/>
+            <point key="canvasLocation" x="445" y="125"/>
         </scene>
         <!--User Book List View Controller-->
         <scene sceneID="3ku-rc-44v">
@@ -2489,7 +2489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQQ-7R-Odu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923" y="349"/>
+            <point key="canvasLocation" x="858" y="125"/>
         </scene>
         <!--更多书评界面-->
         <scene sceneID="kHn-YX-wRu">
@@ -3050,7 +3050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OP4-xB-8bP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="-290"/>
+            <point key="canvasLocation" x="476" y="-294"/>
         </scene>
     </scenes>
     <resources>

@@ -149,7 +149,7 @@ typedef NS_ENUM(NSUInteger, JZPromptAnimateState){
             [self hideAnimate];
         }else if (self.AnimateState == JZPromptAnimateStateWillHide){
             self.AnimateState = JZPromptAnimateStatedidHide;
-//            [self removeFromSuperview];
+            [self removeFromSuperview];
         }
 
 }

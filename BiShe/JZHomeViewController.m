@@ -49,10 +49,11 @@ IB_DESIGNABLE
     [self setUpWithSlip];
     [self setUpWithContetView];
     [self barClickDidWithButton:self.buttons[0]];
-//    [[JZWildDog WildDog]observeUserBook];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
-
+    GKHScanQCodeViewController *vc = [[GKHScanQCodeViewController alloc]init];
+    vc.delegate                    = self;
+    _GKHScanQCode = vc;
 
 
   
@@ -203,9 +204,7 @@ IB_DESIGNABLE
  *  @param sender <#sender description#>
  */
 - (IBAction)searchWithISBN:(id)sender {
-    GKHScanQCodeViewController *vc = [[GKHScanQCodeViewController alloc]init];
-    UINavigationController *nav    = [[UINavigationController alloc]initWithRootViewController:vc];
-    vc.delegate                    = self;
+    UINavigationController *nav    = [[UINavigationController alloc]initWithRootViewController:self.GKHScanQCode];
     [self presentViewController:nav animated:YES completion:nil];
 }
 /**< 显示内容界面 */

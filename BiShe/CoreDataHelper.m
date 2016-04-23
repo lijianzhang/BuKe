@@ -113,6 +113,7 @@ static NSString *const fileName = @"douban.sqlite";
     [array enumerateObjectsUsingBlock:^(JZComment * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.context deleteObject:obj];
     }];
+    [self saveContext];
     return YES;
 }
 

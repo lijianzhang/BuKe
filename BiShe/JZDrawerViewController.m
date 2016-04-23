@@ -57,7 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.number = 1;
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeData) name:@"changeUserData" object:nil];
     // Do any additional setup after loading the view.
 
 }
@@ -86,15 +86,15 @@
     if ([self isRight:0]) {
         [self.drawer close];
     }else{
-        if (self.isHaveUser) {
+        if ([userStroe isHaveUser]) {
             [self.drawer replaceCenterViewControllerWithViewController:self.userViewController];
+             self.number = 0;
             
         }else{
             [self presentViewController:self.LoginViewController animated:YES completion:^{
                 
             }];
         }
-        self.number = 0;
     }
 }
 - (IBAction)pushHome:(id)sender {
@@ -120,14 +120,26 @@
 - (BOOL)isRight:(NSUInteger )index{
     return index==self.number?YES:NO;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)changeData{
+
+    userStroe *user = [userStroe loadUser];
+    if (user) {
+        self.userName.text = user.name;
+        self.haveUser = YES;
+        if (user.imageString) {
+            UIImage *userImage = [user Base64StrToUIImage];
+            [self.userPortrait setImage:userImage];
+        }
+        
+    }else{
+        self.haveUser = NO;
+        self.userName.text = @"立即登陆";
+        [self.userPortrait setImage:[UIImage imageNamed:@"login_default_icon"]];
+        
+    }
 }
-*/
-
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 @end

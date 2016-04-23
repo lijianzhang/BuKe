@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "JZRootViewController.h"
-
+@class GKHScanQCodeViewController;
 @interface JZHomeViewController : UIViewController<JZDrawerControllerProtocol>
 
 @property(nonatomic, weak) JZRootViewController *drawer;
+@property(nonatomic,strong)GKHScanQCodeViewController *GKHScanQCode;/**<<#text#> */
 
 - (void)drawerControllerWillOpen:(JZRootViewController *)drawerController;
 

@@ -21,6 +21,7 @@ MJCodingImplementation
 
 + (void)removeUser{
     NSError *error;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeUserData" object:nil];
     if (![[[NSFileManager alloc]init] removeItemAtPath:IWAccountFile error:&error]) {
 
     } ;
@@ -41,6 +42,8 @@ MJCodingImplementation
 
 - (void)saveUser{
     [NSKeyedArchiver archiveRootObject:self toFile:IWAccountFile];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"changeUserData" object:nil];
+
 }
 
 -(NSString *)UIImageToBase64Str:(UIImage *) image
@@ -61,5 +64,11 @@ MJCodingImplementation
 }
 
 
-
++ (BOOL)isHaveUser{
+    userStroe *user = [NSKeyedUnarchiver unarchiveObjectWithFile:IWAccountFile];
+    if (user) {
+        return YES;
+    }
+    return NO;
+}
 @end

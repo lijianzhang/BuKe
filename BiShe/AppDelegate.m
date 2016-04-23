@@ -11,6 +11,7 @@
 #import "JZSearchViewController.h"
 #import "CoreDataHelper.h"
 #import "JZWildDog.h"
+#import "JZHomeViewController.h"
 @interface AppDelegate ()
 @property(nonatomic,strong)CoreDataHelper *helper;
 @end
@@ -26,14 +27,14 @@
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler{
     if ([shortcutItem.type isEqualToString:@"one"]) {
-        GKHScanQCodeViewController *vc = [[GKHScanQCodeViewController alloc]init];
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        UINavigationController * rootnav = self.window.rootViewController.childViewControllers.firstObject;
+        JZHomeViewController *vc = (JZHomeViewController *)rootnav.childViewControllers.firstObject;
+        NSLog(@"%@",vc);
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc.GKHScanQCode];
         [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
     }
     if([shortcutItem.type isEqualToString:@"two"]){
         JZSearchViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"JZSearchViewController"];
-//        [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
-
         UINavigationController *nav = (UINavigationController *)self.window.rootViewController.childViewControllers[0];
         
         [nav pushViewController:vc animated:YES];

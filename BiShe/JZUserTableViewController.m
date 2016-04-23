@@ -35,8 +35,7 @@
         self.haveUser = YES;
         self.edit.enabled =YES;
         if (user.imageString) {
-            NSData *imageData  = [[NSData alloc]initWithBase64EncodedString:user.imageString options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            UIImage *userImage = [UIImage imageWithData:imageData];
+            UIImage *userImage = [user Base64StrToUIImage];
             [self.userImage setImage:userImage];
         }
 

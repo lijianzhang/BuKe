@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AF345636FE2063E8BC36E82E20E7AFBE6DEDC4CD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "979D6950F5B7B1C6DE6D5E38EE67C8D5E2790B2B" : 0,
+    "AF345636FE2063E8BC36E82E20E7AFBE6DEDC4CD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "83BA9FF3-79D6-4096-BD04-CBDE31E192E2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "979D6950F5B7B1C6DE6D5E38EE67C8D5E2790B2B" : "BiShe\/BiShe\/",
+    "AF345636FE2063E8BC36E82E20E7AFBE6DEDC4CD" : "BiShe\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BiShe",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BiShe.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CCOOOOLL\/BiShe.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "979D6950F5B7B1C6DE6D5E38EE67C8D5E2790B2B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lijianzhang\/-.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AF345636FE2063E8BC36E82E20E7AFBE6DEDC4CD"
+    }
+  ]
+}

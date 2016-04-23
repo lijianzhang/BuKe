@@ -53,17 +53,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - 返回
 - (void)backButtonEvent
 {
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];
+
     [self dismissViewControllerAnimated:YES completion:nil];
-//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark 初始化扫描
@@ -143,7 +139,6 @@
         
     }
     else{
-//        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"该图片没有包含一个条形码"preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -173,7 +168,6 @@
      CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeQRCode context:nil options:@{ CIDetectorAccuracy : CIDetectorAccuracyHigh }];
     NSArray *features = [detector featuresInImage:[CIImage imageWithCGImage:QRimage.CGImage]];
     if (features.count >=1) {
-//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
             
             CIQRCodeFeature *feature = [features objectAtIndex:0];
@@ -183,8 +177,7 @@
             NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
             AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
             AudioServicesPlaySystemSound(soundID);
-        qrstring=scannedResult;
-//        [self accordingQcode:scannedResult];
+            qrstring=scannedResult;
     }else{
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该图片没有包含一个二维码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
@@ -203,7 +196,6 @@
     NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:@"noticeMusic" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
     AudioServicesPlaySystemSound(soundID);
-//     [self dismissViewControllerAnimated:YES completion:nil];
     [self accordingQcode:result];
     
     [self performSelector:@selector(reStartScan) withObject:nil afterDelay:1.5];
@@ -212,14 +204,12 @@
 #pragma mark - 扫描结果处理
 - (void)accordingQcode:(NSString *)str
 {
-//     [self backButtonEvent];
     //输出扫描字符串
     if (_delegate && [_delegate respondsToSelector:@selector(GKHScanQCodeViewController:readerScanResult:)]) {
         [_delegate GKHScanQCodeViewController:self readerScanResult:str];
     }
     [self backButtonEvent];
-//    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"扫描结果" message:str delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//    [alertView show];
+
 }
 
 - (void)reStartScan
@@ -269,14 +259,6 @@
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

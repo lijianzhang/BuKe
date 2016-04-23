@@ -29,4 +29,5 @@
 - (void)saveUser;
 + (instancetype)loadUser;
 + (void)removeUser;
++ (BOOL)isHaveUser;
 @end

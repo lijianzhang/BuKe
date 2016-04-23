@@ -17,6 +17,7 @@
 #import "JZComment.h"
 #import "starView.h"
 #import "JZButton.h"
+#import "JZPromptView.h"
 
 @interface JZFistTableViewController ()<JZGradeViewControllerDeleage>
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
@@ -110,6 +111,10 @@
     }
 }
 - (IBAction)pushGradeView:(UIButton *)sender {
+    if (![userStroe isHaveUser]) {
+        [[JZPromptView prompt]starShowWithTitle:@"请先登陆"];
+        return;
+    }
     JZGradeViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"JZGradeViewController"];
     vc.gradeType = sender.tag;
     vc.comment = self.comment;

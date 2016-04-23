@@ -28,7 +28,6 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 @interface JZRootViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic,strong)UIViewController<JZDrawerControllerProtocol> *leftViewController;
 @property (nonatomic,strong)UIViewController<JZDrawerControllerProtocol> *centerViewController;
-//@property (nonatomic,strong)NSArray *childViewControllers;
 @property (nonatomic,strong)UIView *leftView;
 @property (nonatomic,strong)JZRootCententView *centerView;
 
@@ -46,17 +45,12 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
     self.leftViewController.drawer = self;
     self.centerViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"JZHomeViewController"];
     self.centerViewController.drawer = self;
-//    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    // Initialize left and center view containers
     self.leftView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.centerView = [[JZRootCententView alloc] initWithFrame:self.view.bounds];
-//    self.leftView.autoresizingMask = self.view.autoresizingMask;
-//    self.centerView.autoresizingMask = self.view.autoresizingMask;
+
     
-    // Add the center view container
     [self.view addSubview:self.centerView];
     
-    // Add the center view controller to the container
     [self addCenterViewController];
     
     [self setupGestureRecognizers];
@@ -69,7 +63,6 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
     self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
     self.panGestureRecognizer.maximumNumberOfTouches = 1;
     self.panGestureRecognizer.delegate = self;
-//    [self cententViewAddGestureRecognizer];
     
 }
 
@@ -92,12 +85,11 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.centerViewController];
     [self addChildViewController:nav];
-//    nav.navigationBar.barTintColor = [UIColor colorWithRed:74/255.0 green:184/255.0 blue:58/255.0 alpha:1];
     self.centerViewController.view.frame = self.view.bounds;
     [self.centerView addSubview:nav.view];
     [self.centerViewController didMoveToParentViewController:self];
 }
-#pragma mark Tap and Pan to close the drawer
+#pragma mark 手势
 - (void)tapGestureRecognized:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     if (tapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
@@ -159,18 +151,15 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
             if (self.drawerState == JZDrawerControllerStateOpening) {
                 CGFloat centerViewLocation = self.centerView.frame.origin.x;
                 if (centerViewLocation == JZDrawerControllerDrawerDepth) {
-                    // Open the drawer without animation, as it has already being dragged in its final position
                     [self setNeedsStatusBarAppearanceUpdate];
                     [self didOpen];
                 }
                 else if (centerViewLocation > self.view.bounds.size.width / 3
                          && velocity.x > 0.0f) {
-                    // Animate the drawer opening
                     [self animateOpening];
                 }
                 else {
-                    // Animate the drawer closing, as the opening gesture hasn't been completed or it has
-                    // been reverted by the user
+
                     [self didOpen];
                     [self willClose];
                     [self animateClosing];
@@ -179,23 +168,17 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
             } else if (self.drawerState == JZDrawerControllerStateClosing) {
                 CGFloat centerViewLocation = self.centerView.frame.origin.x;
                 if (centerViewLocation == 0.0f) {
-                    // Close the drawer without animation, as it has already being dragged in its final position
                     [self setNeedsStatusBarAppearanceUpdate];
                     [self didClose];
                 }
                 else if (centerViewLocation < (2 * self.view.bounds.size.width) / 3
                          && velocity.x < 0.0f) {
-                    // Animate the drawer closing
                     [self animateClosing];
                 }
                 else {
-                    // Animate the drawer opening, as the opening gesture hasn't been completed or it has
-                    // been reverted by the user
+
                     [self didClose];
-                    
-                    // Here we save the current position for the leftView since
-                    // we want the opening animation to start from the current position
-                    // and not the one that is set in 'willOpen'
+
                     CGRect l = self.leftView.frame;
                     [self willOpen];
                     self.leftView.frame = l;
@@ -214,7 +197,6 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 {
  
     
-    // Calculate the final frames for the container views
     CGRect leftViewFinalFrame = self.view.bounds;
     CGRect centerViewFinalFrame = self.view.bounds;
     centerViewFinalFrame.origin.x = JZDrawerControllerDrawerDepth;
@@ -240,7 +222,6 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 - (void)animateClosing
 {
     
-    // Calculate final frames for the container views
     CGRect leftViewFinalFrame = self.leftView.frame;
     leftViewFinalFrame.origin.x = JZDrawerControllerLeftViewInitialOffset;
     CGRect centerViewFinalFrame = self.view.bounds;
@@ -278,23 +259,18 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 {
 
     
-    // Keep track that the drawer is opening
     self.drawerState = JZDrawerControllerStateOpening;
     
-    // Position the left view
     CGRect f = self.view.bounds;
     f.origin.x = JZDrawerControllerLeftViewInitialOffset;
     self.leftView.frame = f;
     
-    // Start adding the left view controller to the container
     [self addChildViewController:self.leftViewController];
     self.leftViewController.view.frame = self.leftView.bounds;
     [self.leftView addSubview:self.leftViewController.view];
     
-    // Add the left view to the view hierarchy
     [self.view insertSubview:self.leftView belowSubview:self.centerView];
     
-    // Notify the child view controllers that the drawer is about to open
     if ([self.leftViewController respondsToSelector:@selector(drawerControllerWillOpen:)]) {
         [self.leftViewController drawerControllerWillOpen:self];
     }
@@ -307,12 +283,10 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 {
 
     
-    // Complete adding the left controller to the container
     [self.leftViewController didMoveToParentViewController:self];
     
     [self.centerView addGestureRecognizer:self.tapGestureRecognizer];
     
-    // Keep track that the drawer is open
     self.drawerState = JZDrawerControllerStateOpen;
     
     // Notify the child view controllers that the drawer is open
@@ -338,13 +312,10 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 {
 
     
-    // Start removing the left controller from the container
     [self.leftViewController willMoveToParentViewController:nil];
     
-    // Keep track that the drawer is closing
     self.drawerState = JZDrawerControllerStateClosing;
     
-    // Notify the child view controllers that the drawer is about to close
     if ([self.leftViewController respondsToSelector:@selector(drawerControllerWillClose:)]) {
         [self.leftViewController drawerControllerWillClose:self];
     }
@@ -357,19 +328,15 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
 {
 
     
-    // Complete removing the left view controller from the container
     [self.leftViewController.view removeFromSuperview];
     [self.leftViewController removeFromParentViewController];
     
-    // Remove the left view from the view hierarchy
     [self.leftView removeFromSuperview];
     
     [self.centerView removeGestureRecognizer:self.tapGestureRecognizer];
     
-    // Keep track that the drawer is closed
     self.drawerState = JZDrawerControllerStateClosed;
     
-    // Notify the child view controllers that the drawer is closed
     if ([self.leftViewController respondsToSelector:@selector(drawerControllerDidClose:)]) {
         [self.leftViewController drawerControllerDidClose:self];
     }
@@ -395,11 +362,9 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
-                             // The center view controller is now out of sight
                              if (reloadBlock) {
                                  reloadBlock();
                              }
-                             // Finally, close the drawer
                              [self animateClosing];
                          }
                      }];
@@ -421,25 +386,20 @@ typedef NS_ENUM(NSUInteger, JZDrawerControllerState)
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
-                             // The center view controller is now out of sight
                              
-                             // Remove the current center view controller from the container
                              if ([self.centerViewController respondsToSelector:@selector(setDrawer:)]) {
                                  self.centerViewController.drawer = nil;
                              }
                              [self.centerViewController.view removeFromSuperview];
                              [self.centerViewController removeFromParentViewController];
                              
-                             // Set the new center view controller
                              self.centerViewController = viewController;
                              if ([self.centerViewController respondsToSelector:@selector(setDrawer:)]) {
                                  self.centerViewController.drawer = self;
                              }
                              
-                             // Add the new center view controller to the container
                              [self addCenterViewController];
                              
-                             // Finally, close the drawer
                              [self animateClosing];
                          }
                      }];

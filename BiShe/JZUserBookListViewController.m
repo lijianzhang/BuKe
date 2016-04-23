@@ -41,6 +41,7 @@ static NSString *const identifier = @"cell";
     [super viewDidLoad];
     self.showTagsView = YES;
     self.bookLIstView.dataSource =self;
+    self.bookLIstView.delegate = self;
     self.userTagsView.tagsArray = self.bookArray;
     self.userTagsView.tagsViewDeleage = self;
     self.bookLIstView.tableFooterView = [UIView new];
@@ -64,6 +65,8 @@ static NSString *const identifier = @"cell";
     cell.bookDataModel = self.dataArray[indexPath.row].book;
     return cell;
 }
+
+
 - (IBAction)showTags:(id)sender {
     UIButton *button = (UIButton *)sender;
     button.userInteractionEnabled = NO;
@@ -97,6 +100,8 @@ static NSString *const identifier = @"cell";
     if ([tagName isEqualToString:@"全部"]) {
         self.dataArray = self.bookArray;
         [self.bookLIstView reloadData];
+        [self showTags:nil];
+
         return;
     }
     for (JZComment *comment in self.bookArray) {
